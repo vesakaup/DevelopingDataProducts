@@ -1,0 +1,51 @@
+K-means clustering for penguins dataset
+========================================================
+author: Vesa Kauppinen
+date: 19 8 2020
+
+
+Overview
+========================================================
+
+This application, published at shinyapp.io, explores the penguins dataset.
+
+
+This app let's user to select and analyse the dataset in pairwise format. The app will plot a scatter plot for the selected pair of variables and do k-means clustering for selected number of clusters.
+
+For more information about the dataset: [palmerpenguins](https://github.com/allisonhorst/palmerpenguins)
+
+Documentation and instructions for the app:
+[github repo](https://github.com/vesakaup/DevelopingDataProducts)
+
+Glimpse at the data
+========================================================
+
+```{r, echo = FALSE}
+remotes::install_github("allisonhorst/palmerpenguins")
+library(tidyverse)
+library(palmerpenguins)
+penguins2 <- na.omit(penguins)
+penguins3 <- sapply(penguins2, function(x) if(is.factor(x)) {
+        as.numeric(x)
+} else {
+        x
+})
+penguins3 <- data.frame(penguins3) ## convert to a data frame
+write.csv(penguins3,"penguins3.csv",row.names = FALSE)
+pingu <- penguins3
+
+glimpse(pingu)
+```
+
+Clustering example
+========================================================
+![alt text](lataus.png)
+
+User Inputs
+========================================================
+The user is required to specify:
+
+- X Variable
+- Y Variable
+- Number of clusters to be generated (Max 5)
+
